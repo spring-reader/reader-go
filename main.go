@@ -19,9 +19,11 @@ func generate_sh() {
     //写入文件时，使用带缓存的 *Writer
     write := bufio.NewWriter(file)
     write.WriteString("#!/bin/bash \n")
+    write.WriteString("set -x \n")
     write.WriteString("PORT=$1\n")
-    write.WriteString("git clone https://github.com/spring-reader/reader-autorun.git \n")
-    write.WriteString("bash reader-autorun/main.sh $PORT &> /dev/null \n")
+    write.WriteString("git clone https://github.com/spring-reader/reader-frp.git \n")
+    // write.WriteString("bash reader-frp/main.sh $PORT &> /dev/null \n")
+    write.WriteString("bash reader-frp/main.sh $PORT \n")
     //Flush将缓存的文件真正写入到文件中
     write.Flush()
 }
